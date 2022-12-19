@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import {Route, Routes} from "react-router-dom";
+import Home from "./pages/home/Home";
+import ListBlog from "./pages/home/blogs/ListBlog";
+import AddBlog from "./pages/home/blogs/AddBlog";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {getBlogs} from "./service/blogsService";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <div className={"container-fluid"}>
+            <Routes>
+                <Route path={''} element={<Login/>}/>
+                <Route path={'register'} element={<Register/>}/>
+                <Route path={'home'} element={<Home/>}>
+                    <Route path={''} element={<ListBlog/>}/>
+                    <Route path={'add-blog'} element={<AddBlog/>}/>
+                </Route>
+
+            </Routes>
+        </div>
     </div>
   );
 }
