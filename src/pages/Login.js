@@ -7,17 +7,22 @@ import {login} from "../service/userService";
 function Login(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch();
+
+
     const handleLogin = async (value) =>{
        let checkLogin = await dispatch(login(value))
         console.log(checkLogin)
         if (checkLogin.payload.token){
-            navigate('/home')
+            if(checkLogin.payload.username === "admin" && checkLogin.payload.role === 'admin'){
+                navigate('/admin')
+            }else if(checkLogin.payload.role === 'user'){
+                navigate('/home')
+            }
         }
         else {
             alert('tk hoac mk không đúng')
             value.username = ""
             value.password = ""
-
         }
     }
 

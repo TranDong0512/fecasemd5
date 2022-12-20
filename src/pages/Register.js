@@ -31,7 +31,7 @@ function Register(props) {
                         password: '',
                         status: "true",
                         image: "abc.jpg",
-                        role: "true"
+                        role: "user"
                     }} onSubmit={(values,{resetForm}) => {
                         handleRegister(values).then()
                         resetForm()

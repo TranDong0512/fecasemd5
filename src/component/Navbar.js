@@ -1,10 +1,11 @@
 import React from 'react';
 import {Field, Form, Formik} from "formik";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 function Navbar(props) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const user = useSelector(state => {
         console.log(state.user)
         return state.user
@@ -12,8 +13,8 @@ function Navbar(props) {
 
     return (
         <div>
-            <div className="row">
-                <div className="col-12">
+            <div className="row" >
+                <div className="col-12" style={{position:"fixed",zIndex:100}}>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <Link className="navbar-brand" to="/home">Home</Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -58,13 +59,15 @@ function Navbar(props) {
                                     </Formik>
                                 </li>
                             </ul>
-                            <form className="form-inline my-2 my-lg-0">
-                                {user.currentUser.username}
-                             <Link to={'/'}>
-                                 <button className=" ml-3 btn btn-outline-danger my-2 my-sm-0" type="submit">Logout
+                            <div className="form-inline my-2 my-lg-0">
+
+                                 <button className=" ml-3 btn btn-outline-danger my-2 my-sm-0" type="submit" onClick={()=>{
+                                     localStorage.clear()
+                                     navigate('/')
+                                 }}>Logout
                                  </button>
-                             </Link>
-                            </form>
+
+                            </div>
                         </div>
                     </nav>
                 </div>

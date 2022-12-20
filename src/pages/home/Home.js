@@ -1,22 +1,18 @@
 import React from 'react';
-import Navbar from "../../compoents/Navbar";
+import Navbar from "../../component/Navbar";
 import {Outlet} from "react-router-dom";
+import ListBlog from "./blogs/ListBlog";
 
 function Home(props) {
-    return (
-        <div>
-            <div className='row'>
-                <div className='col-12'>
-                    <Navbar></Navbar>
-                </div>
-                <div className='row'>
-                    <div className='col-12'>
-                     <Outlet></Outlet>
-                    </div>
-                </div>
-            </div>
+return(
+    <div className='row'>
+        <div className='col-12'>
+            <Navbar></Navbar>
+            <ListBlog></ListBlog>
         </div>
-    );
+
+    </div>
+)
 }
 
 export default Home;
